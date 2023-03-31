@@ -1,12 +1,24 @@
 import "./App.css";
-import data from "./assets/mock-data.json";
+
 import { Post } from "./components/Post";
+import { getArticles } from "./components/get-articles";
+import React, { useState, useEffect } from "react";
 
 function App() {
-  let array = data;
- // console.log(data);
+  const [data, setData] = useState(null);
 
-  return <Post item={array[1]}></Post>;
+  useEffect(() => {
+    getArticles().then((fetchedData) => {
+      setData(fetchedData);
+    });
+  }, []);
+
+  return (
+    <>
+      {data &&
+        data.map((post) => <Post post={post} key={post.articleId}></Post>)}
+    </>
+  );
 }
 
 export default App;
