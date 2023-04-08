@@ -1,0 +1,15 @@
+@import "../../common/styles/vars.module.scss";
+@import "../../common/styles/mixins.module.scss";
+
+.comment {
+  background-color: rgb(208, 215, 220);
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: $lightPrimaryColor;
+  padding: 5px;
+
+  &_name {
+    @include fontSettings(32);
+  }
+}

@@ -1,7 +1,10 @@
-import "./Post.css";
 import { useEffect, useState } from "react";
-import { getComments } from "./get-comments-by-article";
-import { Comment } from "./Comment";
+import { getComments } from "../services/get-comments-by-article";
+import { Comment } from "../Comment/Comment";
+import classnames from 'classnames/bind'
+import styles from "./Post.module.scss";
+
+const cn = classnames.bind(styles)
 
 export function Post(props) {
   const { post } = props;
@@ -14,14 +17,13 @@ export function Post(props) {
 
   useEffect(() => {
     setLikes(post.currentLikes);
-  }, []);
+  }, [post]);
 
   useEffect(() => {
     getComments(post.articleId).then((fetchedData) => {
       setComments(fetchedData);
-      console.log(fetchedData);
     });
-  }, []);
+  }, [post]);
 
   const changeLikes = () => {
     if (!isLiked) {
@@ -46,22 +48,21 @@ export function Post(props) {
   };
 
   return (
-    <div className="item">
+    <div className={styles.item}>
       <div>{post.title}</div>
       <div>{post.text}</div>
       <div>Лайки : {likes}</div>
-      <button onClick={changeLikes}>{likeStr}</button>
+      <button className={cn('item', [`has_like-${isLiked}`])} onClick={changeLikes}>{likeStr}</button>
       <div>{!isLiked || "Лайк поставлен"}</div>
       <div>Комментарии : {post.commentsCount}</div>
-      <div className="commennts">
+      <div>
         {comments &&
           isShowComments &&
-          comments.map((comment) => <Comment comment={comment}></Comment>)}
+          comments.map((comment, id) => (
+            <Comment comment={comment} key={id}></Comment>
+          ))}
       </div>
-      <button className="check_comments" onClick={showComments}>
-        {commentStr}
-      </button>
-      <div>{!isLiked || "Лайк поставлен"}</div>
+      <button onClick={showComments}>{commentStr}</button>
     </div>
   );
 }

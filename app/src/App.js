@@ -1,7 +1,7 @@
 import "./App.css";
 
-import { Post } from "./components/Post";
-import { getArticles } from "./components/get-articles";
+import { Post } from "./components/Post/Post";
+import { getArticles } from "./components/services/get-articles";
 import React, { useState, useEffect } from "react";
 
 function App() {
