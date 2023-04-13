@@ -14,10 +14,12 @@ body {
   @include itemSetting();
   margin-left: auto;
   margin-right: auto;
+  margin-top: 1%;
+  margin-bottom: 1%;
 
   * {
     margin-top: 1%;
-    margin-bottom: 2%;
+    margin-bottom: 1%;
   }
 }
 
@@ -28,9 +30,11 @@ button {
   max-width: fit-content;
   border-color: $lightPrimaryColor;
   cursor: pointer;
+  white-space: nowrap;
+  max-height: 20px;
 
   &:hover {
-    background-color: $lightSecondaryColor;
+    opacity: .9;
   }
 }
 
@@ -42,4 +46,21 @@ button {
   &-false {
     background-color: rgb(193, 200, 207);
   }
+}
+
+.creation_date {
+  left: 35%;
+  position: relative;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.edit {
+  display: flex;
+  flex-direction: row;
+
+}
+
+.edit_button {
+  margin-left: 5%;
 }

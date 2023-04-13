@@ -12,4 +12,29 @@
   &_name {
     @include fontSettings(32);
   }
+  &_edit {
+    min-width: 80%;
+  }
+}
+
+button {
+  border-style: none;
+  border-radius: 30px;
+  max-width: fit-content;
+  border-color: $lightPrimaryColor;
+  cursor: pointer;
+
+  &:hover { 
+    opacity: .6;
+  }
+}
+
+.has_like {
+  &-true {
+    background-color: red;
+  }
+
+  &-false {
+    background-color:white
+  }
 }
