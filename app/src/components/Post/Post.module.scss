@@ -1,0 +1,66 @@
+@import "../../common/styles/vars.module.scss";
+@import "../../common/styles/mixins.module.scss";
+
+body {
+  background-color: $lightSecondaryColor;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @include itemSetting();
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1%;
+  margin-bottom: 1%;
+
+  * {
+    margin-top: 1%;
+    margin-bottom: 1%;
+  }
+}
+
+button {
+  background-color: white;
+  border-style: none;
+  border-radius: 30px;
+  max-width: fit-content;
+  border-color: $lightPrimaryColor;
+  cursor: pointer;
+  white-space: nowrap;
+  max-height: 20px;
+
+  &:hover {
+    opacity: .9;
+  }
+}
+
+.has_like {
+  &-true {
+    background-color: red;
+  }
+
+  &-false {
+    background-color: rgb(193, 200, 207);
+  }
+}
+
+.creation_date {
+  left: 35%;
+  position: relative;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.edit {
+  display: flex;
+  flex-direction: row;
+
+}
+
+.edit_button {
+  margin-left: 5%;
+}

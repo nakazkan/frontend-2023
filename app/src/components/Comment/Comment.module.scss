@@ -1,0 +1,40 @@
+@import "../../common/styles/vars.module.scss";
+@import "../../common/styles/mixins.module.scss";
+
+.comment {
+  background-color: rgb(208, 215, 220);
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: $lightPrimaryColor;
+  padding: 5px;
+
+  &_name {
+    @include fontSettings(32);
+  }
+  &_edit {
+    min-width: 80%;
+  }
+}
+
+button {
+  border-style: none;
+  border-radius: 30px;
+  max-width: fit-content;
+  border-color: $lightPrimaryColor;
+  cursor: pointer;
+
+  &:hover { 
+    opacity: .6;
+  }
+}
+
+.has_like {
+  &-true {
+    background-color: red;
+  }
+
+  &-false {
+    background-color:white
+  }
+}

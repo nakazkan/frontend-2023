@@ -1,0 +1,19 @@
+@import "../../common/styles/vars.module.scss";
+
+
+@mixin fontSettings($size: 20) {
+  font-weight: bold;
+  font-size: $size;
+}
+
+@mixin itemSetting($border-radius: 15px, $border-width: 3px, $border-color: $lightPrimaryColor, $width: 40%,
+  $margin: 50px, $margin-top: 3%, $background-color: steelblue) {
+  border-radius: $border-radius;
+  border-width: $border-width;
+  border-style: solid;
+  border-color: $border-color;
+  width: $width;
+  margin: $margin;
+  margin-top: $margin-top;
+  background-color: $background-color;
+}
