@@ -17,6 +17,14 @@ body {
   margin-top: 1%;
   margin-bottom: 1%;
 
+  &-blue {
+    background-color: steelblue;
+  }
+
+  &-light {
+    background-color: rgb(193, 200, 207);
+  }
+
   * {
     margin-top: 1%;
     margin-bottom: 1%;
@@ -53,14 +61,4 @@ button {
   position: relative;
   margin-top: 0;
   margin-bottom: 0;
-}
-
-.edit {
-  display: flex;
-  flex-direction: row;
-
-}
-
-.edit_button {
-  margin-left: 5%;
 }

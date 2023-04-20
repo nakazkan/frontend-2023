@@ -1,10 +1,12 @@
+import React from 'react'
 import styles from "./Comment.module.scss";
 import { useState } from "react";
 import classnames from "classnames/bind";
+
 const cn = classnames.bind(styles);
 
-export function Comment(props) {
-  const { comment } = props;
+export function Comment({comment}) {
+
   const [likeStr, setLikeStr] = useState("Лайкнуть");
   const [isEdit, setIsEdit] = useState(false);
   const [text, setText] = useState(comment.text);
@@ -20,6 +22,7 @@ export function Comment(props) {
       comment.isLiked = true;
       setLikeStr("Убрать Лайк");
     }
+  
   };
   const changeEditText = () => {
     if (isEdit) {
@@ -30,7 +33,7 @@ export function Comment(props) {
       setEditStr("Отменить изменения");
     }
   };
-  
+
   const handleChangeText = (event) => {
     setText(event.target.value);
   };
@@ -71,7 +74,6 @@ export function Comment(props) {
           onClick={changeLikes}
         >
           {likeStr}
-
         </button>
         <button onClick={changeEditText}>{editStr}</button>
       </div>
