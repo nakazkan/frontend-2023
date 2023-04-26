@@ -1,0 +1,50 @@
+[
+  {
+    "author": "Sofa",
+    "articleId": 33,
+    "text": "Comment comment comment",
+    "currentLikes": 1,
+    "isLiked": true,
+    "creationDate": "2017-01-26 9:00"
+  },
+  {
+    "author": "Ivan",
+    "articleId": 5,
+    "text": "Random text from Ivan",
+    "currentLikes": 2,
+    "isLiked": false,
+    "creationDate": "2017-01-29 9:05"
+  },
+  {
+    "author": "Oleg",
+    "articleId": 5,
+    "text": "Long text long text long text long text long text long text",
+    "currentLikes": 3,
+    "isLiked": false,
+    "creationDate": "2017-01-29 9:02"
+  },
+  {
+    "author": "Roman",
+    "articleId": 33,
+    "text": "Short text",
+    "currentLikes": 333,
+    "isLiked": false,
+    "creationDate": "2017-01-29 9:00"
+  },
+  {
+    "author": "Bob",
+    "articleId": 16,
+    "text": "Short text from Bob",
+    "currentLikes": 1000,
+    "isLiked": false,
+    "creationDate": "2017-02-01 9:00"
+  },
+  {
+    "author": "Roman",
+    "articleId": 11,
+    "text": "Short text from Frank + random random random",
+    "currentLikes": 228,
+    "isLiked": false,
+    "creationDate": "2017-02-02 9:00"
+  }
+]
