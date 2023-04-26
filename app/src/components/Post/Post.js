@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { getComments } from "../services/get-comments-by-article";
 import { Comment } from "../Comment/Comment";
 import EditForm from "../EditForm/EditForm";
+import { getArticles } from "../services/get-articles";
+import { useParams } from "react-router-dom";
 
 import classnames from "classnames/bind";
 import styles from "./Post.module.scss";
@@ -14,7 +16,8 @@ const mapStateToProps = (state) => ({
   data: state.dataReducer.data,
 });
 
-export function Post({ post, theme, data, changeData, changeTheme }) {
+export function Post({ theme, data, changeData, changeTheme }) {
+  const { articleId } = useParams();
   const [comments, setComments] = useState([]);
   const [likes, setLikes] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
@@ -22,15 +25,26 @@ export function Post({ post, theme, data, changeData, changeTheme }) {
   const [likeStr, setLikeStr] = useState("Лайкнуть");
   const [commentStr, setCommentStr] = useState("Показать комментарии");
   const [sortField, setSortField] = useState("creationDate");
+  const [post, setPost] = useState(null);
 
   useEffect(() => {
-    setLikes(post.currentLikes);
-  }, [post]);
+    getArticles()
+      .then((fetchedData) => {
+        let data = fetchedData.find((b) => b.articleId == articleId);
+        setPost(data);
+        return { data };
+      })
+      .then((data) => {
+        setLikes(data.currentLikes);
+      });
+  }, [articleId]);
 
   useEffect(() => {
-    getComments(post.articleId).then((fetchedData) => {
-      setComments(fetchedData);
-    });
+    if (post) {
+      getComments(post.articleId).then((fetchedData) => {
+        setComments(fetchedData);
+      });
+    }
   }, [post]);
 
   const changeLikes = () => {
@@ -67,38 +81,42 @@ export function Post({ post, theme, data, changeData, changeTheme }) {
   }
 
   return (
-    <div className={cn('item', [`item-${theme}`])}>
-      <div className={styles.creation_date}>{post.creationDate}</div>
-      <EditForm post={post} fieldName={"заголовок"}></EditForm>
-      <EditForm post={post} fieldName={"текст"}></EditForm>
-      <div>Лайки : {likes}</div>
-      <button
-        className={cn("item", [`has_like-${isLiked}`])}
-        onClick={changeLikes}
-      >
-        {likeStr}
-      </button>
-      <div>Комментарии : {post.commentsCount}</div>
-      <div>
-        {comments &&
-          isShowComments &&
-          comments
-            .sort(byFieldSort(sortField))
-            .map((comment, id) => (
-              <Comment comment={comment} key={id}></Comment>
-            ))}
-      </div>
-      <div>
-        {comments && isShowComments && (
+    <>
+      {post && (
+        <div className={cn("item", [`item-${theme}`])}>
+          <div className={styles.creation_date}>{post.creationDate}</div>
+          <EditForm post={post} fieldName={"заголовок"}></EditForm>
+          <EditForm post={post} fieldName={"текст"}></EditForm>
+          <div>Лайки : {likes}</div>
+          <button
+            className={cn("item", [`has_like-${isLiked}`])}
+            onClick={changeLikes}
+          >
+            {likeStr}
+          </button>
+          <div>Комментарии : {post.commentsCount}</div>
           <div>
-            Сортировать по:
-            <button onClick={changeSortFieldLikes}>Лайкам</button>
-            <button onClick={changeSortFieldDate}>Дате</button>
+            {comments &&
+              isShowComments &&
+              comments
+                .sort(byFieldSort(sortField))
+                .map((comment, id) => (
+                  <Comment comment={comment} key={id}></Comment>
+                ))}
           </div>
-        )}
-      </div>
-      <button onClick={showComments}>{commentStr}</button>
-    </div>
+          <div>
+            {comments && isShowComments && (
+              <div>
+                Сортировать по:
+                <button onClick={changeSortFieldLikes}>Лайкам</button>
+                <button onClick={changeSortFieldDate}>Дате</button>
+              </div>
+            )}
+          </div>
+          <button onClick={showComments}>{commentStr}</button>
+        </div>
+      )}
+    </>
   );
 }
 
